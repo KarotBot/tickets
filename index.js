@@ -2,6 +2,7 @@ require("dotenv").config()
 const Discord = require('discord.js')
 const { GCommands } = require("gcommands");
 require("./classes/TextChannel")
+Discord.Constants.DefaultOptions.ws.properties.$browser = "Discord Android";
 const client = new Discord.Client({ partials: ['MESSAGE', 'REACTION', 'GUILD_MEMBER']});
 
 client.tickets = {
