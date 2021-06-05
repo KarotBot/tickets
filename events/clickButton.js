@@ -15,7 +15,7 @@ module.exports = {
             
             let already = allChannels.some(v => buttonMember.user.id.includes(v.toLowerCase()))
             if(already === true) {
-                return buttonMember.send("Sorry, you already have ticket.")
+                return buttonMember.send("<:kt_nesuhlas:822475199755583488> You can only have **1** ticket at a time!")
             }
 
             let ticketChannel = await guild.channels.create(`ticket-${buttonMember.user.id}`, {
@@ -39,10 +39,8 @@ module.exports = {
             })
 
             let supportEmbed = new MessageEmbed()
-                .setColor("#32a852")
-                .setDescription("Support will be with you shortly.\nTo close this ticket react with :lock:")
-                .setFooter("By Hyro#8938")
-                .setTimestamp();
+                .setColor("#E54918")
+                .setDescription("We are working on your request!.\nTo close this ticket, tap the :lock: button.")
 
             let supportButton = new MessageButton()
                 .setLabel("")
