@@ -12,6 +12,7 @@ client.tickets = {
 }
 
 client.on('ready', async () => {
+    client.user.setActivity({ type: "COMPETING", name: `https://docs.karot.xyz`});
     const GCommandsClient = new GCommands(client, {
         cmdDir: "commands/",
         eventDir: "events/",
