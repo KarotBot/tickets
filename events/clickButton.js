@@ -40,11 +40,11 @@ module.exports = {
 
             let supportEmbed = new MessageEmbed()
                 .setColor("#E54918")
-                .setDescription("We are working on your request!.\nTo close this ticket, tap the :lock: button.")
+                .setDescription("We are working on your request!.\nTo close this ticket, tap the close button.")
 
             let supportButton = new MessageButton()
-                .setLabel("")
-                .setEmoji("🔒")
+                .setLabel("Close")
+                .setEmoji("<:kekega:822475395281715250>")
                 .setStyle("gray")
                 .setID(`ticket_close_${ticketChannel.id}`)
 
@@ -56,10 +56,10 @@ module.exports = {
             let ticketChannel = button.channel;
             let createdBy = client.users.cache.get(ticketChannel.name.split("ticket-")[1])
 
-            let yes = new MessageButton().setLabel("").setEmoji("✅").setStyle("gray").setID(`ticket_close_yes_${buttonMember.user.id}`)
-            let no = new MessageButton().setLabel("").setEmoji("❌").setStyle("gray").setID(`ticket_close_no_${buttonMember.user.id}`)
+            let yes = new MessageButton().setLabel("").setEmoji("<:kt_suhlas:822473993780068393>").setStyle("gray").setID(`ticket_close_yes_${buttonMember.user.id}`)
+            let no = new MessageButton().setLabel("").setEmoji("<:kt_nesuhlas:822475199755583488>").setStyle("gray").setID(`ticket_close_no_${buttonMember.user.id}`)
 
-            let msg = await ticketChannel.send(`${buttonMember.user} Do you really want close ticket?`, {components: new MessageActionRow().addComponent(yes).addComponent(no)})
+            let msg = await ticketChannel.send(`${buttonMember.user} Do you really want close the ticket?`, {components: new MessageActionRow().addComponent(yes).addComponent(no)})
             let filter = (button) => buttonMember.user.id == button.clicker.user.id
             let collector = ticketChannel.createButtonCollector(msg, filter, { max: 1, time: 60000, errors: ["time"] })
 
@@ -69,16 +69,16 @@ module.exports = {
 
                     let closedEmbed = new MessageEmbed()
                         .setColor("#4287f5")
-                        .setDescription(`Ticket closed by ${button.clicker.user}\nTicket created by ${createdBy}\n\n🔓 Reopen Ticket\n📛 Delete Ticket`)
+                        .setDescription(`Ticket closed by ${button.clicker.user}\nTicket created by ${createdBy}\n\n<:kekega:822475395281715250> Reopen Ticket\n📛 Delete Ticket`)
 
                     let reopen = new MessageButton()
-                        .setLabel("")
+                        .setLabel("Reopen")
                         .setID(`ticket_reopen_${ticketChannel.id}`)
-                        .setEmoji("🔓")
+                        .setEmoji("<:kekega:822475395281715250>")
                         .setStyle("green")
                    
                     let deleteButton = new MessageButton()
-                        .setLabel("")
+                        .setLabel("Delete")
                         .setID(`ticket_delete_${ticketChannel.id}`)
                         .setEmoji("📛")
                         .setStyle("red")
@@ -118,14 +118,12 @@ module.exports = {
             systemMessages.forEach(msg => {msg.delete()})
 
             let supportEmbed = new MessageEmbed()
-                .setColor("#32a852")
-                .setDescription("Support will be with you shortly.\nTo close this ticket react with :lock:")
-                .setFooter("By Hyro#8938")
-                .setTimestamp();
+                .setColor("#E54918")
+                .setDescription("We are working on your request!.\nTo close this ticket, tap the close button.")
 
             let supportButton = new MessageButton()
-                .setLabel("")
-                .setEmoji("🔒")
+                .setLabel("Close")
+                .setEmoji("<:kekega:822475395281715250>")
                 .setStyle("gray")
                 .setID(`ticket_close_${ticketChannel.id}`)
 
@@ -155,8 +153,8 @@ module.exports = {
             let ticketChannel = button.channel;
 
             let deleteEmbed = new MessageEmbed()
-                .setColor("#f54257")
-                .setDescription("Ticket deleted in 5s")
+                .setColor("#E54918")
+                .setDescription("The ticket will be deleted in 5s")
             
             ticketChannel.send("", {embeds: deleteEmbed})
             setTimeout(() => {ticketChannel.delete()}, 5000);
