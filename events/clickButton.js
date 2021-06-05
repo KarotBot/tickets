@@ -59,7 +59,7 @@ module.exports = {
             let yes = new MessageButton().setLabel("").setEmoji("<:kt_suhlas:822473993780068393>").setStyle("gray").setID(`ticket_close_yes_${buttonMember.user.id}`)
             let no = new MessageButton().setLabel("").setEmoji("<:kt_nesuhlas:822475199755583488>").setStyle("gray").setID(`ticket_close_no_${buttonMember.user.id}`)
 
-            let msg = await ticketChannel.send(`${buttonMember.user} Do you really want close the ticket?`, {components: new MessageActionRow().addComponent(yes).addComponent(no)})
+            let msg = await ticketChannel.send(`${buttonMember.user} Do you really want to close the ticket?`, {components: new MessageActionRow().addComponent(yes).addComponent(no)})
             let filter = (button) => buttonMember.user.id == button.clicker.user.id
             let collector = ticketChannel.createButtonCollector(msg, filter, { max: 1, time: 60000, errors: ["time"] })
 
